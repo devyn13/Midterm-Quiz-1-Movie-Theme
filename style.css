@@ -1,0 +1,415 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #000;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  background: #111;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.navbar .logo {
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+  color:  palevioletred;
+}
+
+/* Banner Carousel */
+.banner {
+  position: relative;
+  margin-top: 60px; /* offset for navbar */
+  height: 100vh;
+  overflow: hidden;
+}
+
+.carousel {
+  position: relative;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: fade 15s infinite;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Fade animation */
+@keyframes fade {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  30% { opacity: 1; }
+  35% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Stagger slides */
+.slide:nth-child(1) { animation-delay: 0s; }
+.slide:nth-child(2) { animation-delay: 5s; }
+.slide:nth-child(3) { animation-delay: 10s; }
+
+/* Slide Text Content */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  padding: 20px;
+  max-width: 600px;
+  z-index: 1;
+}
+
+.content h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.content .btn {
+  padding: 12px 25px;
+  background: #ff4c4c;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.content .btn:hover {
+  background: #e63e3e;
+}
+
+/* Footer */
+.footer {
+  background: #111;
+  text-align: center;
+  padding: 15px;
+  color: #aaa;
+}
+
+/* Genres Page */
+.genres-page {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.genres-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.genres-page .subtitle {
+  color: #bbb;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.genre-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.genre-card {
+  position: relative;
+  height: 450px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.genre-card:hover {
+  transform: scale(1.05);
+}
+
+.genre-overlay {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.genre-overlay h2 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+/* Genre Detail Page */
+.genre-detail {
+  padding: 6rem 2rem 3rem;
+  text-align: center;
+}
+
+.genre-detail h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.genre-detail .subtitle {
+  color: #bbb;
+  margin-bottom: 2.5rem;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+/* Image Card */
+.image-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  width: 400px;        /* fixed width for posters */
+  height: 450px;       /* keep a poster-like ratio (2:3) */
+  margin: 0 auto;      /* center in grid */
+}
+
+.image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* fills space, crops a little if needed */
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.image-card:hover img {
+  transform: scale(1.05);
+}
+
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Stack text vertically */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  padding: 1rem;
+  text-align: center;
+}
+
+.image-card:hover .overlay {
+  opacity: 1;
+}
+
+.overlay .info h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.overlay .info p {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.overlay .platforms {
+  font-size: 0.85rem;
+  color: #ff4c4c;
+  font-weight: bold;
+}
+.back-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #e50914; /* Netflix red */
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #b00610;
+}
+/* News Page */
+.news-page {
+  padding: 6rem 2rem 3rem;
+  text-align: center;
+}
+
+.news-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.news-page .subtitle {
+  color: #bbb;
+  margin-bottom: 2.5rem;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.news-card {
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+  transform: scale(1.03);
+}
+
+.news-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.news-content {
+  padding: 1rem;
+}
+
+.news-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.news-content .date {
+  font-size: 0.85rem;
+  color: #ff4c4c;
+  margin-bottom: 0.8rem;
+}
+
+.news-content .excerpt {
+  font-size: 0.95rem;
+  color: #ddd;
+  line-height: 1.5;
+}
+/* Cinemas Page */
+.cinemas-page {
+  padding: 6rem 2rem 3rem;
+  text-align: center;
+}
+
+.cinemas-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.cinemas-page .subtitle {
+  color: #bbb;
+  margin-bottom: 2.5rem;
+}
+
+.cinema-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.cinema-card {
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.cinema-card:hover {
+  transform: scale(1.03);
+}
+
+.cinema-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.cinema-content {
+  padding: 1rem;
+}
+
+.cinema-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.cinema-content .location {
+  font-size: 0.9rem;
+  color: #ff4c4c;
+  margin-bottom: 0.8rem;
+}
+
+.cinema-content .fact {
+  font-size: 0.95rem;
+  color: #ddd;
+  line-height: 1.5;
+}
